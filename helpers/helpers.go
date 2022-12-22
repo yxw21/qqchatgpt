@@ -9,7 +9,6 @@ import (
 	"github.com/Mrs4s/MiraiGo/client"
 	"github.com/Mrs4s/MiraiGo/message"
 	"github.com/tuotoo/qrcode"
-	"github.com/yxw21/chatgpt"
 	"log"
 	"os"
 	"qqgpt/config"
@@ -70,7 +69,7 @@ func LoginWithQRCode(saveToken bool) (*client.QQClient, error) {
 			}
 			log.Println("使用二维码扫码登录成功")
 			if saveToken {
-				os.WriteFile(config.Instance.TokenFile, qq.GenToken(), 0777)
+				_ = os.WriteFile(config.Instance.TokenFile, qq.GenToken(), 0777)
 			}
 			break
 		}
@@ -86,7 +85,7 @@ func LoginWithToken() (*client.QQClient, error) {
 		return nil, err
 	}
 	if err = qq.TokenLogin(token); err != nil {
-		os.ReadFile(config.Instance.TokenFile)
+		_, _ = os.ReadFile(config.Instance.TokenFile)
 		qq.Disconnect()
 		return nil, err
 	}
@@ -119,19 +118,12 @@ func AutoLoadDevice() error {
 	fileBytes, err := os.ReadFile(config.Instance.DeviceFile)
 	if err != nil {
 		fileBytes = client.SystemDeviceInfo.ToJson()
-		os.WriteFile(config.Instance.DeviceFile, fileBytes, 0777)
+		_ = os.WriteFile(config.Instance.DeviceFile, fileBytes, 0777)
 	}
 	if err = client.SystemDeviceInfo.ReadJson(fileBytes); err != nil {
 		return err
 	}
 	return nil
-}
-
-func GetNewChat() *chatgpt.Chat {
-	if config.Instance.AIUsername != "" && config.Instance.AIPassword != "" && config.Instance.Key != "" {
-		return chatgpt.NewChat(config.Instance.AIUsername, config.Instance.AIPassword, config.Instance.Key)
-	}
-	return chatgpt.NewChatWithSessionToken(config.Instance.SessionToken)
 }
 
 func PrintJSONMarshal[T any](event T) {
