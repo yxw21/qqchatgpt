@@ -39,7 +39,7 @@ func init() {
 	if Instance.AIUsername != "" && Instance.AIPassword != "" && Instance.Key != "" {
 		Session = session.NewSessionWithCredential(Instance.AIUsername, Instance.AIPassword, Instance.Key).AutoRefresh()
 	} else {
-		Session = session.NewSessionWithAccessToken(Instance.AccessToken)
+		Session = session.NewSessionWithAccessToken(Instance.AccessToken).AutoRefresh()
 	}
 	qq, err := strconv.ParseInt(os.Getenv("QQ_UIN"), 10, 64)
 	if err == nil {
