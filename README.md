@@ -91,3 +91,6 @@ QQ_CHAT_GPT_POLICY = agree,https://example.com
 ./qqgpt
 ```
 建议先在本地运行程序扫码登录之后默认会生成`qq.token`和`device.json`，将这两个文件上传到服务器再运行程序。不然扫码会提示当前设备网络不稳定或处于复杂网络环境.
+
+# Docker
+https://hub.docker.com/r/yxw21/qqchatgpt
