@@ -2,7 +2,6 @@ package config
 
 import (
 	"github.com/yxw21/chatgpt"
-	session "github.com/yxw21/chatgpt/session"
 	"os"
 	"strconv"
 )
@@ -17,11 +16,12 @@ type Config struct {
 	FriendAddPolicy string
 	TokenFile       string
 	DeviceFile      string
+	MsgRetry        int
 }
 
 var (
 	Instance *Config
-	Session  *session.Session
+	Session  *chatgpt.Session
 	Chats    = make(map[int64]*chatgpt.Chat)
 )
 
@@ -35,14 +35,19 @@ func init() {
 		FriendAddPolicy: os.Getenv("QQ_CHAT_GPT_POLICY"),
 		TokenFile:       "qq.token",
 		DeviceFile:      "device.json",
+		MsgRetry:        3,
 	}
 	if Instance.AIUsername != "" && Instance.AIPassword != "" && Instance.Key != "" {
-		Session = session.NewSessionWithCredential(Instance.AIUsername, Instance.AIPassword, Instance.Key).AutoRefresh()
+		Session = chatgpt.NewSessionWithCredential(Instance.AIUsername, Instance.AIPassword, Instance.Key).AutoRefresh()
 	} else {
-		Session = session.NewSessionWithAccessToken(Instance.AccessToken).AutoRefresh()
+		Session = chatgpt.NewSessionWithAccessToken(Instance.AccessToken).AutoRefresh()
 	}
 	qq, err := strconv.ParseInt(os.Getenv("QQ_UIN"), 10, 64)
 	if err == nil {
 		Instance.QQ = qq
+	}
+	msgRetry, err := strconv.Atoi(os.Getenv("QQ_MSG_RETRY"))
+	if err == nil && msgRetry > 0 {
+		Instance.MsgRetry = msgRetry
 	}
 }

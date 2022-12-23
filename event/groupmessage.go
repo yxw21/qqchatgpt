@@ -14,15 +14,19 @@ func GroupMessage(client *client.QQClient, event *message.GroupMessage) {
 		if _, ok := config.Chats[event.Sender.Uin]; !ok {
 			config.Chats[event.Sender.Uin] = chatgpt.NewChat(config.Session)
 		}
-		res, err := config.Chats[event.Sender.Uin].Send(content)
-		if err != nil {
-			client.SendGroupMessage(event.GroupCode, &message.SendingMessage{
-				Elements: []message.IMessageElement{message.NewAt(event.Sender.Uin), message.NewText(err.Error())},
-			})
-		} else {
-			client.SendGroupMessage(event.GroupCode, &message.SendingMessage{
-				Elements: []message.IMessageElement{message.NewAt(event.Sender.Uin), message.NewText(res.Message.Content.Parts[0])},
-			})
+		for i := 0; i < config.Instance.MsgRetry; i++ {
+			res, err := config.Chats[event.Sender.Uin].Send(content)
+			if err == nil {
+				client.SendGroupMessage(event.GroupCode, &message.SendingMessage{
+					Elements: []message.IMessageElement{message.NewAt(event.Sender.Uin), message.NewText(res.Message.Content.Parts[0])},
+				})
+				break
+			}
+			if i == config.Instance.MsgRetry-1 {
+				client.SendGroupMessage(event.GroupCode, &message.SendingMessage{
+					Elements: []message.IMessageElement{message.NewAt(event.Sender.Uin), message.NewText(err.Error())},
+				})
+			}
 		}
 	}
 }
