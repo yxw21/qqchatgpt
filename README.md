@@ -41,6 +41,8 @@ apk add chromium
 QQ号
 ### QQ_PASSWORD (可选)
 QQ密码
+### QQ_MSG_RETRY (可选)
+chatgpt请求失败重试的次数，次数越多回复消息就越慢(默认3)
 ### QQ_KEY (必填)
 破解谷歌验证码需要的key，需要去网站`nopecha.com`购买
 ### QQ_CHAT_GPT_USERNAME (可选)
