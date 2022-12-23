@@ -48,7 +48,7 @@ openai用户名
 ### QQ_CHAT_GPT_PASSWORD (可选)
 openai密码
 ### QQ_CHAT_GPT_ACCESS_TOKEN (可选)
-大概一天过期，不推荐
+大概7天过期
 1. 登录 https://chat.openai.com
 2. 访问 https://chat.openai.com/api/auth/session
 ### QQ_CHAT_GPT_POLICY (可选)
