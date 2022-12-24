@@ -52,9 +52,11 @@ func LoginWithQRCode(saveToken bool) (*client.QQClient, error) {
 			continue
 		}
 		if newQRCodeLoginResponse.State == client.QRCodeCanceled {
-			log.Println("扫码被用户取消.")
+			log.Println("扫码被用户取消，重新生成二维码")
+			return LoginWithQRCode(saveToken)
 		} else if newQRCodeLoginResponse.State == client.QRCodeTimeout {
-			log.Println("二维码过期")
+			log.Println("二维码过期，重新生成二维码")
+			return LoginWithQRCode(saveToken)
 		} else if newQRCodeLoginResponse.State == client.QRCodeWaitingForConfirm {
 			log.Println("扫码成功, 请在手机端确认登录.")
 		} else if newQRCodeLoginResponse.State == client.QRCodeConfirmed {
