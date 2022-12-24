@@ -15,31 +15,8 @@
 ```
 
 ### 使用docker
-需要提供一些[环境变量](https://github.com/yxw21/qqchatgpt#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)
 
-每次记得拉取一下最新版
-```
-docker pull yxw21/qqchatgpt
-```
-
-###### 本地登录QQ获取`qq.token`
-```
-docker run -dit yxw21/qqchatgpt
-```
-然后查看容器日志`docker logs xxxx`，扫描二维码登录。登录成功之后拷贝容器里面的qq.token。`docker cp xxx:/qqchatgpt/qq.token ./`
-
-#### 本地运行
-```
-docker run -dit -e QQ_CHAT_GPT_USERNAME=example@gmail.com -e QQ_CHAT_GPT_PASSWORD=password -e QQ_KEY=I-12312 yxw21/qqchatgpt
-```
-然后查看容器日志`docker logs xxxx`，扫描二维码登录。
-
-#### 服务器运行
-```
-docker run -dit -e QQ_CHAT_GPT_USERNAME=example@gmail.com -e QQ_CHAT_GPT_PASSWORD=password -e QQ_KEY=I-12312 -v ./qq.token:/qqchatgpt/qq.token yxw21/qqchatgpt
-```
-
-https://hub.docker.com/r/yxw21/qqchatgpt
+参考 https://hub.docker.com/r/yxw21/qqchatgpt
 
 # QQ登录流程
 如果提供了`QQ_UIN`和`QQ_PASSWORD`会先尝试使用qq和密码登录，遇到有验证消息或其他原因不能成功登录的会使用二维码扫码登录。
