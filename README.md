@@ -8,14 +8,14 @@
 
 ### 直接下载二进制文件运行
 需要安装[依赖](https://github.com/yxw21/qqchatgpt#%E4%BE%9D%E8%B5%96)
-并且提供一些[环境变量](https://github.com/yxw21/qqchatgpt#%E4%BE%9D%E8%B5%96)
+并且提供一些[环境变量](https://github.com/yxw21/qqchatgpt#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)
 然后运行
 ```
 ./qqchatgpt
 ```
 
 ### 使用docker
-需要提供一些[环境变量](https://github.com/yxw21/qqchatgpt#%E4%BE%9D%E8%B5%96)
+需要提供一些[环境变量](https://github.com/yxw21/qqchatgpt#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)
 ```
 docker run -dit -e QQ_CHAT_GPT_USERNAME=example@gmail.com -e QQ_CHAT_GPT_PASSWORD=password -e QQ_KEY=I-12312 -v ./qq.token:/qqchatgpt/qq.token yxw21/qqchatgpt
 ```
