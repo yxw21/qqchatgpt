@@ -1,6 +1,38 @@
+# 支持的功能
+1. 私聊回复
+2. 群里@回复
+3. 好友请求处理
+
+# 使用
+建议先在本地运行程序扫码登录之后默认会生成`qq.token`和`device.json`，将这两个文件上传到服务器再运行程序。不然扫码会提示当前设备网络不稳定或处于复杂网络环境.
+
+### 直接下载二进制文件运行
+需要安装[依赖](https://github.com/yxw21/qqchatgpt/edit/master/README.md#%E4%BE%9D%E8%B5%96)
+并且提供一些[环境变量](https://github.com/yxw21/qqchatgpt/edit/master/README.md#%E4%BE%9D%E8%B5%96)
+然后运行
+```
+./qqchatgpt
+```
+
+### 使用docker
+需要提供一些[环境变量](https://github.com/yxw21/qqchatgpt/edit/master/README.md#%E4%BE%9D%E8%B5%96)
+```
+docker run -dit -e QQ_CHAT_GPT_USERNAME=example@gmail.com -e QQ_CHAT_GPT_PASSWORD=password -e QQ_KEY=I-12312 -v ./qq.token:/qqchatgpt/qq.token yxw21/qqchatgpt
+```
+https://hub.docker.com/r/yxw21/qqchatgpt
+
+# QQ登录流程
+如果提供了`QQ_UIN`和`QQ_PASSWORD`会先尝试使用qq和密码登录，遇到有验证消息或其他原因不能成功登录的会使用二维码扫码登录。
+
+没有提供`QQ_UIN`和`QQ_PASSWORD`会使用二维码扫码登录。
+
+# CHATGPT登录流程
+如果提供了`QQ_CHAT_GPT_USERNAME`和`QQ_CHAT_GPT_PASSWORD`会自动登录获取`AccessToken`。
+
+`QQ_CHAT_GPT_USERNAME`、`QQ_CHAT_GPT_PASSWORD`和`QQ_CHAT_GPT_ACCESS_TOKEN`必须提供一项
 
 # 依赖
-### Xvfb （只有linux环境需要安装
+### Xvfb （只有linux环境需要安装）
   
 Ubuntu or Debian
 ```
@@ -81,28 +113,3 @@ QQ_CHAT_GPT_POLICY = agree,123456
 ```
 QQ_CHAT_GPT_POLICY = agree,https://example.com
 ```
-# QQ登录流程
-如果提供了qq和密码会先尝试使用qq和密码登录，遇到有验证消息或其他原因不能成功登录的会使用二维码扫码登录。
-
-没有提供qq和密码会使用二维码扫码登录。
-# CHATGPT登录流程
-如果提供了chatgpt用户名和密码会使用账号密码登录获取token。
-
-账号密码和access token必须提供一项
-# 支持的功能
-1. 私聊
-2. 群里@
-3. 好友请求
-# 使用
-
-建议先在本地运行程序扫码登录之后默认会生成`qq.token`和`device.json`，将这两个文件上传到服务器再运行程序。不然扫码会提示当前设备网络不稳定或处于复杂网络环境.
-
-### 直接下载二进制文件运行
-```
-./qqchatgpt
-```
-### 使用docker
-```
-docker run -dit -e QQ_CHAT_GPT_USERNAME=example@gmail.com -e QQ_CHAT_GPT_PASSWORD=password -e QQ_KEY=I-12312 -v ./qq.token:/qqchatgpt/qq.token yxw21/qqchatgpt
-```
-https://hub.docker.com/r/yxw21/qqchatgpt
