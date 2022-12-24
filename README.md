@@ -80,8 +80,12 @@ QQ号
 QQ密码
 ### QQ_MSG_RETRY (可选)
 chatgpt请求失败重试的次数，次数越多回复消息就越慢(默认3)
-### QQ_KEY (必填)
+### QQ_KEY (可选)
 破解谷歌验证码需要的key，需要去网站`nopecha.com`购买
+
+如果提供了`QQ_CHAT_GPT_USERNAME`和`QQ_CHAT_GPT_PASSWORD`则必须提供`QQ_KEY`
+
+提供的是`QQ_CHAT_GPT_ACCESS_TOKEN`就可以忽略
 ### QQ_CHAT_GPT_USERNAME (可选)
 openai用户名
 ### QQ_CHAT_GPT_PASSWORD (可选)
