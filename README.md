@@ -7,15 +7,15 @@
 建议先在本地运行程序扫码登录之后默认会生成`qq.token`和`device.json`，将这两个文件上传到服务器再运行程序。不然扫码会提示当前设备网络不稳定或处于复杂网络环境.
 
 ### 直接下载二进制文件运行
-需要安装[依赖](https://github.com/yxw21/qqchatgpt/edit/master/README.md#%E4%BE%9D%E8%B5%96)
-并且提供一些[环境变量](https://github.com/yxw21/qqchatgpt/edit/master/README.md#%E4%BE%9D%E8%B5%96)
+需要安装[依赖](https://github.com/yxw21/qqchatgpt/README.md#%E4%BE%9D%E8%B5%96)
+并且提供一些[环境变量](https://github.com/yxw21/qqchatgpt/README.md#%E4%BE%9D%E8%B5%96)
 然后运行
 ```
 ./qqchatgpt
 ```
 
 ### 使用docker
-需要提供一些[环境变量](https://github.com/yxw21/qqchatgpt/edit/master/README.md#%E4%BE%9D%E8%B5%96)
+需要提供一些[环境变量](https://github.com/yxw21/qqchatgpt/README.md#%E4%BE%9D%E8%B5%96)
 ```
 docker run -dit -e QQ_CHAT_GPT_USERNAME=example@gmail.com -e QQ_CHAT_GPT_PASSWORD=password -e QQ_KEY=I-12312 -v ./qq.token:/qqchatgpt/qq.token yxw21/qqchatgpt
 ```
