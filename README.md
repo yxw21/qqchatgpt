@@ -93,11 +93,16 @@ QQ_CHAT_GPT_POLICY = agree,https://example.com
 1. 私聊
 2. 群里@
 3. 好友请求
-# 使用(可直接下载二进制文件)
-```
-./qqgpt
-```
+# 使用
+
 建议先在本地运行程序扫码登录之后默认会生成`qq.token`和`device.json`，将这两个文件上传到服务器再运行程序。不然扫码会提示当前设备网络不稳定或处于复杂网络环境.
 
-# Docker
+### 直接下载二进制文件运行
+```
+./qqchatgpt
+```
+### 使用docker
+```
+docker run -dit -e QQ_CHAT_GPT_USERNAME=example@gmail.com -e QQ_CHAT_GPT_PASSWORD=password -e QQ_KEY=I-12312 -v ./qq.token:/qqchatgpt/qq.token yxw21/qqchatgpt
+```
 https://hub.docker.com/r/yxw21/qqchatgpt
