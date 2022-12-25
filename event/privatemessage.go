@@ -17,20 +17,16 @@ func PrivateMessage(client *client.QQClient, event *message.PrivateMessage) {
 		return
 	}
 	if _, ok := config.Chats[event.Sender.Uin]; !ok {
-		config.Chats[event.Sender.Uin] = chatgpt.NewChat(config.Session)
+		config.Chats[event.Sender.Uin] = chatgpt.NewChat(config.Browser, config.Session)
 	}
-	for i := 0; i < config.Instance.MsgRetry; i++ {
-		res, err := config.Chats[event.Sender.Uin].Send(content)
-		if err == nil {
-			client.SendPrivateMessage(event.Sender.Uin, &message.SendingMessage{
-				Elements: []message.IMessageElement{message.NewText(res.Message.Content.Parts[0])},
-			})
-			break
-		}
-		if i == config.Instance.MsgRetry-1 {
-			client.SendPrivateMessage(event.Sender.Uin, &message.SendingMessage{
-				Elements: []message.IMessageElement{message.NewText(err.Error())},
-			})
-		}
+	res, err := config.Chats[event.Sender.Uin].Send(content)
+	if err != nil {
+		client.SendPrivateMessage(event.Sender.Uin, &message.SendingMessage{
+			Elements: []message.IMessageElement{message.NewText(err.Error())},
+		})
+	} else {
+		client.SendPrivateMessage(event.Sender.Uin, &message.SendingMessage{
+			Elements: []message.IMessageElement{message.NewText(res.Message.Content.Parts[0])},
+		})
 	}
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"github.com/Mrs4s/MiraiGo/client"
+	"github.com/yxw21/chatgpt"
 	"log"
 	"qqgpt/config"
 	"qqgpt/event"
@@ -14,6 +15,12 @@ func main() {
 		qq  *client.QQClient
 		err error
 	)
+	browser, closeBrowser, err := chatgpt.NewBrowser("")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer closeBrowser()
+	config.Browser = browser
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	if err = helpers.AutoLoadDevice(); err != nil {
