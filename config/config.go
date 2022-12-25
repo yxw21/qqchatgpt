@@ -36,11 +36,6 @@ func init() {
 		TokenFile:       "qq.token",
 		DeviceFile:      "device.json",
 	}
-	if Instance.AIUsername != "" && Instance.AIPassword != "" && Instance.Key != "" {
-		Session = chatgpt.NewSessionWithCredential(Instance.AIUsername, Instance.AIPassword, Instance.Key).AutoRefresh()
-	} else {
-		Session = chatgpt.NewSessionWithAccessToken(Instance.AccessToken).AutoRefresh()
-	}
 	qq, err := strconv.ParseInt(os.Getenv("QQ_UIN"), 10, 64)
 	if err == nil {
 		Instance.QQ = qq

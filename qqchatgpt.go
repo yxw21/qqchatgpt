@@ -15,12 +15,17 @@ func main() {
 		qq  *client.QQClient
 		err error
 	)
-	browser, closeBrowser, err := chatgpt.NewBrowser("")
+	browser, closeBrowser, err := chatgpt.NewBrowser(config.Instance.Key)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer closeBrowser()
 	config.Browser = browser
+	if config.Instance.AIUsername != "" && config.Instance.AIPassword != "" {
+		config.Session = chatgpt.NewSessionWithCredential(browser, config.Instance.AIUsername, config.Instance.AIPassword).AutoRefresh()
+	} else {
+		config.Session = chatgpt.NewSessionWithAccessToken(browser, config.Instance.AccessToken).AutoRefresh()
+	}
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	if err = helpers.AutoLoadDevice(); err != nil {
