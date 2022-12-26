@@ -29,7 +29,7 @@
 `QQ_CHAT_GPT_USERNAME`、`QQ_CHAT_GPT_PASSWORD`和`QQ_CHAT_GPT_ACCESS_TOKEN`必须提供一项
 
 # 依赖
-### Xvfb （只有linux环境需要安装）
+### Xvfb
   
 Ubuntu or Debian
 ```
@@ -112,3 +112,5 @@ QQ_CHAT_GPT_POLICY = agree,123456
 ```
 QQ_CHAT_GPT_POLICY = agree,https://example.com
 ```
+### QQ_PROXY（可选）
+浏览器代理，出现too many request时可以选择更换服务器ip，或者设置代理
