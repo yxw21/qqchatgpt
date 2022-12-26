@@ -71,6 +71,12 @@ apk add chromium
 
 
 # 环境变量
+建议同时提供`QQ_CHAT_GPT_USERNAME`、`QQ_CHAT_GPT_PASSWORD`、`QQ_CHAT_GPT_ACCESS_TOKEN`。
+
+如果只提供用户名和密码登录账号可能需要一些时间。可能是几十秒，也有可能是几分钟，十几分钟（受网络、识别验证码影响）。如果同时提供`QQ_CHAT_GPT_ACCESS_TOKEN`可以避免等待登录。
+
+在`QQ_CHAT_GPT_ACCESS_TOKEN`即将到期前的6个小时就开始自动刷新token。
+
 ### QQ_UIN (可选)
 QQ号
 ### QQ_PASSWORD (可选)

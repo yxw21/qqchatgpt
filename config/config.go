@@ -21,7 +21,7 @@ type Config struct {
 
 var (
 	Instance *Config
-	Session  *chatgpt.Session
+	Session  = &chatgpt.Session{}
 	Browser  *chatgpt.Browser
 	Chats    = make(map[int64]*chatgpt.Chat)
 )
@@ -42,4 +42,7 @@ func init() {
 	if err == nil {
 		Instance.QQ = qq
 	}
+	Session.Username = Instance.AIUsername
+	Session.Password = Instance.AIPassword
+	Session.AccessToken = Instance.AccessToken
 }

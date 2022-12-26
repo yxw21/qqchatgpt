@@ -24,11 +24,7 @@ func main() {
 	}
 	defer closeBrowser()
 	config.Browser = browser
-	if config.Instance.AIUsername != "" && config.Instance.AIPassword != "" {
-		config.Session = chatgpt.NewSessionWithCredential(browser, config.Instance.AIUsername, config.Instance.AIPassword).AutoRefresh()
-	} else {
-		config.Session = chatgpt.NewSessionWithAccessToken(browser, config.Instance.AccessToken).AutoRefresh()
-	}
+	config.Session.Browser = browser
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	if err = helpers.AutoLoadDevice(); err != nil {
