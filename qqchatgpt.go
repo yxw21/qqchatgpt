@@ -25,6 +25,7 @@ func main() {
 	defer closeBrowser()
 	config.Browser = browser
 	config.Session.Browser = browser
+	config.Session.AutoRefresh()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	if err = helpers.AutoLoadDevice(); err != nil {
