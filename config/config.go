@@ -16,6 +16,7 @@ type Config struct {
 	FriendAddPolicy string
 	TokenFile       string
 	DeviceFile      string
+	Proxy           string
 }
 
 var (
@@ -35,6 +36,7 @@ func init() {
 		FriendAddPolicy: os.Getenv("QQ_CHAT_GPT_POLICY"),
 		TokenFile:       "qq.token",
 		DeviceFile:      "device.json",
+		Proxy:           os.Getenv("QQ_PROXY"),
 	}
 	qq, err := strconv.ParseInt(os.Getenv("QQ_UIN"), 10, 64)
 	if err == nil {

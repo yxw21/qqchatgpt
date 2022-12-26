@@ -15,7 +15,10 @@ func main() {
 		qq  *client.QQClient
 		err error
 	)
-	browser, closeBrowser, err := chatgpt.NewBrowser(config.Instance.Key)
+	browser, closeBrowser, err := chatgpt.NewBrowser(chatgpt.BrowserOptions{
+		ExtensionKey: config.Instance.Key,
+		Proxy:        config.Instance.Proxy,
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
