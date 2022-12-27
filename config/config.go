@@ -39,7 +39,7 @@ func init() {
 		Proxy:           os.Getenv("QQ_PROXY"),
 	}
 	qq, err := strconv.ParseInt(os.Getenv("QQ_UIN"), 10, 64)
-	if err == nil {
+	if err == nil && qq > 0 {
 		Instance.QQ = qq
 	}
 	Session.Username = Instance.AIUsername
