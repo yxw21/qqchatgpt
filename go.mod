@@ -6,7 +6,7 @@ require (
 	github.com/Baozisoftware/qrcode-terminal-go v0.0.0-20170407111555-c0650d8dff0f
 	github.com/Mrs4s/MiraiGo v0.0.0-20221227055049-f19951661121
 	github.com/tuotoo/qrcode v0.0.0-20220425170535-52ccc2bebf5d
-	github.com/yxw21/chatgpt v0.9.3
+	github.com/yxw21/chatgpt v0.9.4
 )
 
 require (
