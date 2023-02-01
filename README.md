@@ -46,15 +46,6 @@ Alpine
 apk update
 apk add xvfb
 ```
-### Key
-
-登录需要谷歌验证码，引入了第三方破解，需要去网站`nopecha.com`购买key，价格很便宜
-
-如果提供AccessToken就不需要
-
-```
-https://nopecha.com
-```
 ### Chrome
 
 Ubuntu or Debian
@@ -76,7 +67,7 @@ apk add chromium
 # 环境变量
 建议同时提供`QQ_CHAT_GPT_USERNAME`、`QQ_CHAT_GPT_PASSWORD`、`QQ_CHAT_GPT_ACCESS_TOKEN`。
 
-如果只提供用户名和密码登录账号可能需要一些时间。可能是几十秒，也有可能是几分钟，十几分钟（受网络、识别验证码影响）。如果同时提供`QQ_CHAT_GPT_ACCESS_TOKEN`可以避免等待登录。
+如果只提供用户名和密码登录账号可能需要一些时间。可能是几十秒，也有可能是几分钟（受网络影响）。如果同时提供`QQ_CHAT_GPT_ACCESS_TOKEN`可以避免等待登录。
 
 在`QQ_CHAT_GPT_ACCESS_TOKEN`即将到期前的6个小时就开始自动刷新token。
 
@@ -84,12 +75,6 @@ apk add chromium
 QQ号
 ### QQ_PASSWORD (可选)
 QQ密码
-### QQ_KEY (可选)
-破解谷歌验证码需要的key，需要去网站`nopecha.com`购买
-
-如果提供了`QQ_CHAT_GPT_USERNAME`和`QQ_CHAT_GPT_PASSWORD`则必须提供`QQ_KEY`
-
-提供的是`QQ_CHAT_GPT_ACCESS_TOKEN`就可以忽略
 ### QQ_CHAT_GPT_USERNAME (可选)
 openai用户名
 ### QQ_CHAT_GPT_PASSWORD (可选)
